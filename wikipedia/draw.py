@@ -8,8 +8,9 @@ g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Performing Spring Layout."
 spring_pos = nx.spring_layout(g)
 
-plt.axis("off")
 print "Drawing Network"
+plt.axis("off")
 nx.draw_networkx(g, pos = spring_pos, with_labels = False, node_size = 35)
+print "Saving Figure"
 plt.savefig('wikipedia.pdf')
 plt.close()

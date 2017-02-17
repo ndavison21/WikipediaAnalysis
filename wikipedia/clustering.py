@@ -12,7 +12,7 @@ g_ud = g.to_undirected()
 print "Calculating Clustering Coefficient."
 clust_coefficient = nx.average_clustering(g_ud)
 
-print "Claculated, writing to file"
+print "Calculated. Writing to file"
 file = open("results/clust.txt", "w")
 file.write("Average Clustering Coefficient is: {}".format(clust_coefficient))
 file.close()
