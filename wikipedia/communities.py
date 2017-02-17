@@ -11,7 +11,7 @@ print "Graph Imported, detecting communities."
 communities = community.best_partition(g)
 print "Community detection done!"
 
-values = [parts.get(node) for node in G_fb.nodes()]
+values = [communities.get(node) for node in g.nodes()]
 
 print "Generating Output"
 plt.axis("off")
