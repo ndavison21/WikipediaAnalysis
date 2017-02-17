@@ -29,7 +29,7 @@ in_hist = [in_degrees.values().count(x) for x in in_values]
 out_degrees = g.out_degree()
 out_values = sorted(set(out_degrees.values()))
 out_hist = [out_degrees.values().count(x) for x in out_values]
-max_degree = max(max(in_values), max(out_values))
+
 
 print "Drawing Degree Distributions (log scale)"
 plt.figure()
@@ -40,7 +40,7 @@ plt.legend(['In-Degree', 'Out-Degree'])
 plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
 plt.title('Wikipedia Talk Network')
-plt.xlim([0, max_degree])
+plt.xlim([0, max(in_values)])
 plt.savefig('results/log_degree_distribution.pdf')
 plt.close()
 
@@ -82,7 +82,7 @@ plt.legend(['In-Degree', 'Out-Degree'])
 plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
 plt.title('Degree Distribution in Wikipedia Talk Network')
-plt.xlim([0, max_degree])
+plt.xlim([0, max(in_values)])
 plt.savefig('results/fit_log_degree_distribution.pdf')
 plt.close()
 
