@@ -1,6 +1,12 @@
 print "Importing Libraries."
 import networkx as nx
-import pylab as plt
+import matplotlib
+
+matplotlib.use('AGG')
+
+import matplotlib.pyplot as plt
+
+plt.ioff()
 
 print "Reading in Graph."
 g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
@@ -12,5 +18,5 @@ print "Drawing Network"
 plt.axis("off")
 nx.draw_networkx(g, pos = spring_pos, with_labels = False, node_size = 35)
 print "Saving Figure"
-plt.savefig('wikipedia.pdf')
+plt.savefig('results/wiki.pdf')
 plt.close()
