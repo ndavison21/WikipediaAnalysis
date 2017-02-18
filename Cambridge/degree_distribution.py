@@ -12,7 +12,7 @@ import numpy as np
 from scipy import optimize
 
 print "Reading in Graph."
-g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported, analysing and plotting node degrees."
 
 N, K = g.order(), g.size()
@@ -39,7 +39,7 @@ plt.loglog(out_values, out_hist, 'bv-')
 plt.legend(['In-Degree', 'Out-Degree'])
 plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
-plt.title('Wikipedia Talk Network')
+plt.title('Cambridge Network')
 plt.xlim([0, max_degree])
 plt.savefig('results/log_degree_distribution.pdf')
 plt.close()
@@ -81,7 +81,7 @@ plt.loglog(out_values, out_hist, 'bo')
 plt.legend(['In-Degree', 'Out-Degree'])
 plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
-plt.title('Degree Distribution in Wikipedia Talk Network')
+plt.title('Degree Distribution in Cambridge Network')
 plt.xlim([0, max_degree])
 plt.savefig('results/fit_log_degree_distribution.pdf')
 plt.close()

@@ -1,6 +1,12 @@
 print "Importing Libraries."
 import networkx as nx
-import pylab as plt
+import matplotlib
+
+matplotlib.use('AGG')
+
+import matplotlib.pyplot as plt
+
+plt.ioff()
 
 print "Reading in Graph."
 g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
