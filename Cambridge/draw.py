@@ -12,5 +12,5 @@ print "Drawing Network"
 plt.axis("off")
 nx.draw_networkx(g, pos = spring_pos, with_labels = False, node_size = 35)
 print "Saving Figure"
-plt.savefig('cam.pdf')
+plt.savefig('results/cam.pdf')
 plt.close()
