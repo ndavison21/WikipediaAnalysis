@@ -3,7 +3,7 @@ print "Importing Libraries"
 import networkx as nx
 
 print "Reading in Graph."
-g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
 
 print "Need to convert to undirected graph."

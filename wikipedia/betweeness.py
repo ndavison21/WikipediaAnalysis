@@ -6,7 +6,7 @@ import itertools
 import pylab as plt
 
 print "Reading in Graph."
-g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
 
 print "Setting up Positions"
