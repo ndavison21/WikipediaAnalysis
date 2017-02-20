@@ -16,13 +16,13 @@ g = nx.read_edgelist('data/wiki-Talk_10000.txt', create_using=nx.DiGraph(), node
 
 print "Drawing Network (Spring)"
 sys.stdout.flush()
-plt.figure(num=None, figsize=(10, 10), dpi = 1200)
+plt.figure(num=None, figsize=(20, 20), dpi = 1200)
 plt.axis("off")
 spring_pos = nx.spring_layout(g, iterations = 20)
 nx.draw(g, pos=spring_pos, with_labels = False, node_size = 35)
 print "Saving Figure"
 sys.stdout.flush()
-plt.savefig('results/wiki_10000_spring.pdf')
+plt.savefig('results/wiki_10000_spring_larger.pdf')
 
 print "Reading in 1,000 Graph."
 sys.stdout.flush()
@@ -30,13 +30,13 @@ g = nx.read_edgelist('data/wiki-Talk_1000.txt', create_using=nx.DiGraph(), nodet
 
 print "Drawing Network (Spring)"
 sys.stdout.flush()
-plt.figure(num=None, figsize=(10, 10), dpi = 1200)
+plt.figure(num=None, figsize=(20, 20), dpi = 1200)
 plt.axis("off")
 spring_pos = nx.spring_layout(g, iterations = 20)
 nx.draw(g, pos=spring_pos, with_labels = False, node_size = 35)
 print "Saving Figure"
 sys.stdout.flush()
-plt.savefig('results/wiki_1000_spring.pdf')
+plt.savefig('results/wiki_1000_spring_larger.pdf')
 
 
 print "Reading in 100 Graph."
@@ -45,13 +45,13 @@ g = nx.read_edgelist('data/wiki-Talk_100.txt', create_using=nx.DiGraph(), nodety
 
 print "Drawing Network (Spring)"
 sys.stdout.flush()
-plt.figure(num=None, figsize=(10, 10), dpi = 1200)
+plt.figure(num=None, figsize=(20, 20), dpi = 1200)
 plt.axis("off")
 spring_pos = nx.spring_layout(g, iterations = 20)
 nx.draw(g, pos=spring_pos, with_labels = False, node_size = 35)
 print "Saving Figure"
 sys.stdout.flush()
-plt.savefig('results/wiki_100_spring.pdf')
+plt.savefig('results/wiki_100_spring_larger.pdf')
 
 
 print "Reading in 10 Graph."
@@ -60,10 +60,10 @@ g = nx.read_edgelist('data/wiki-Talk_10.txt', create_using=nx.DiGraph(), nodetyp
 
 print "Drawing Network (Spring)"
 sys.stdout.flush()
-plt.figure(num=None, figsize=(10, 10), dpi = 1200)
+plt.figure(num=None, figsize=(20, 20), dpi = 1200)
 plt.axis("off")
 spring_pos = nx.spring_layout(g, iterations = 20)
 nx.draw(g, pos=spring_pos, with_labels = False, node_size = 35)
 print "Saving Figure"
 sys.stdout.flush()
-plt.savefig('results/wiki_10_spring.pdf')
+plt.savefig('results/wiki_10_spring_larger.pdf')
