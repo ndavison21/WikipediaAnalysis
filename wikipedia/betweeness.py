@@ -9,10 +9,6 @@ print "Reading in Graph."
 g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
 
-print "Setting up Positions"
-#Create network layout for visualizations
-spring_pos = nx.spring_layout(g)
-
 def partitions(nodes, n):
     print "Partition the nodes into n subsets"
     nodes_iter = iter(nodes)
@@ -55,6 +51,8 @@ for max_key, max_val in max_nodes:
     bt_values[max_key] = 150
     bt_colors[max_key] = 2
  
+
+print "Drawing Network."
 plt.axis("off")
-nx.draw_networkx(g, pos = spring_pos, cmap = plt.get_cmap("rainbow"), node_color = bt_colors, node_size = bt_values, with_labels = False)
+nx.draw_networkx(g, cmap = plt.get_cmap("rainbow"), node_color = bt_colors, node_size = bt_values, with_labels = False)
 
