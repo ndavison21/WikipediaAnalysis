@@ -29,7 +29,7 @@ sys.stdout.flush()
 plt.figure(num=None, figsize=(100, 100))
 plt.axis("off")
 spring_pos = nx.spring_layout(g, iterations = 20)
-nx.draw(g, pos=spring_pos, cmap=plt.get_cmap("jet"), node_color=values, with_labels = False, node_size = 35)
+nx.draw(g, pos=spring_pos, cmap=plt.get_cmap("jet"), node_color=values, with_labels = False, node_size = 100)
 print "Saving Figure"
 sys.stdout.flush()
 plt.savefig('results/wiki_100_communites.pdf')
