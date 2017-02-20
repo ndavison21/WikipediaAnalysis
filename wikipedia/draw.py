@@ -12,7 +12,7 @@ plt.ioff()
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
 print "Drawing Network (Spring)"
 sys.stdout.flush()
