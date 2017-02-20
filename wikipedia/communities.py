@@ -9,9 +9,9 @@ matplotlib.use('AGG')
 import matplotlib.pyplot as plt
 plt.ioff
 
-print "Reading in 1,000 Graph."
+print "Reading in 100 Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk_1000.txt', create_using=nx.Graph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk_100.txt', create_using=nx.Graph(), nodetype=int)
 
 
 # print "Convert to undirected."
@@ -32,4 +32,4 @@ spring_pos = nx.spring_layout(g, iterations = 20)
 nx.draw(g, pos=spring_pos, cmap=plt.get_cmap("jet"), node_color=values, with_labels = False, node_size = 35)
 print "Saving Figure"
 sys.stdout.flush()
-plt.savefig('results/wiki_1000_communites.pdf')
+plt.savefig('results/wiki_100_communites.pdf')
