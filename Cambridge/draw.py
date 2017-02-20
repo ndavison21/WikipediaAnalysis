@@ -1,7 +1,6 @@
 print "Importing Libraries."
 import networkx as nx
 import matplotlib
-from networkx.drawing.nx_agraph import graphviz_layout
 
 matplotlib.use('AGG')
 
