@@ -1,4 +1,6 @@
+import sys
 print "Importing Libraries."
+sys.stdout.flush()
 import networkx as nx
 import matplotlib
 
@@ -9,16 +11,21 @@ import matplotlib.pyplot as plt
 plt.ioff()
 
 print "Reading in Graph."
+sys.stdout.flush()
 g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
 print "Drawing Network (Spring)"
+sys.stdout.flush()
 plt.axis("off")
 nx.draw_spring(g, with_labels = False, node_size = 35)
 print "Saving Figure"
+sys.stdout.flush()
 plt.savefig('results/wiki_spring.pdf')
 
 print "Drawing Network (Spectral)"
+sys.stdout.flush()
 nx.draw_spectral(g, with_labels = False, node_size = 35)
 print "Saving Figure"
+sys.stdout.flush()
 plt.savefig('results/wiki_spectral.pdf')
 plt.close()
