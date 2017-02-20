@@ -1,22 +1,35 @@
+
 print "Importing Libraries"
 
+import sys
 import networkx as nx
 import community
+import matplotlib
+matplotlib.use('AGG')
 import matplotlib.pyplot as plt
+plt.ioff
 
-print "Reading in Graph."
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
-print "Graph Imported."
+print "Reading in 1,000 Graph."
+sys.stdout.flush()
+g = nx.read_edgelist('data/wiki-Talk_1000.txt', create_using=nx.DiGraph(), nodetype=int)
 
-print "Need to convert to undirected graph."
+
+print "Convert to undirected."
+sys.stdout.flush()
 g_ud = g.to_undirected()
 
 print "Claculating Best Partition."
+sys.stdout.flush()
 communities = community.best_partition(g)
-print "Partitioning Done!"
 
 values = [communities.get(node) for node in g.nodes()]
-print "Generating Output"
+
+print "Drawing Network (Spring)"
+sys.stdout.flush()
+plt.figure(num=None, figsize=(100, 100))
 plt.axis("off")
-nx.draw_networkx(g, cmap=plt.get_cmap("jet"), node_color=values, node_size=35, with_labels=False)
-plt.savefig("results/communities.png", format = "PNG")
+spring_pos = nx.spring_layout(g, iterations = 20)
+nx.draw(g, pos=spring_pos, cmap=plt.get_cmap("jet"), node_color=values, with_labels = False, node_size = 35)
+print "Saving Figure"
+sys.stdout.flush()
+plt.savefig('results/wiki_1000_communites.pdf')
