@@ -31,5 +31,6 @@ sys.stdout.flush()
 with open('spring_pos_100.pickle', 'wb+') as handle:
     pickle.dump(spring_pos, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+
 # with open('filename.pickle', 'rb') as handle:
 #     b = pickle.load(handle)
