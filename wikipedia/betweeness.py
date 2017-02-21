@@ -1,13 +1,16 @@
+import sys
 print "Importing Libraries"
-
+sys.stdout.flush()
 import networkx as nx
 from multiprocessing import Pool
 import itertools
-import pylab as plt
+import pickle
 
 print "Reading in Graph."
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+sys.stdout.flush()
+g = nx.read_edgelist('data/wiki-Talk_100.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
+sys.stdout.flush()
 
 def partitions(nodes, n):
     print "Partition the nodes into n subsets"
@@ -41,6 +44,7 @@ def between_parallel(G, processes = None):
 
 
 print "Calculating betweeness"
+sys.stdout.flush()
 bt = between_parallel(g)
 top = 10
 
@@ -50,9 +54,19 @@ bt_colors = [0]*len(g.nodes())
 for max_key, max_val in max_nodes:
     bt_values[max_key] = 150
     bt_colors[max_key] = 2
- 
 
-print "Drawing Network."
-plt.axis("off")
-nx.draw_networkx(g, cmap = plt.get_cmap("rainbow"), node_color = bt_colors, node_size = bt_values, with_labels = False)
+print "Storing to file"
+sys.stdout.flush()
+with open('betweeness_colours_100.pickle', 'wb+') as handle:
+    pickle.dump(bt_colors, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
+with open('betweeness_values_100.pickle', 'wb+') as handle:
+    pickle.dump(bt_values, handle, protocol=pickle.HIGHEST_PROTOCOL)
+  
+
+# print "Drawing Network."
+# plt.axis("off")
+# nx.draw_networkx(g, cmap = plt.get_cmap("rainbow"), node_color = bt_colors, node_size = bt_values, with_labels = False)
+
+print "We done here."
+sys.stdout.flush()

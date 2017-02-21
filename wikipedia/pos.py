@@ -2,14 +2,8 @@ import sys
 print "Importing Libraries."
 sys.stdout.flush()
 import networkx as nx
-import matplotlib
 import pickle
 
-matplotlib.use('AGG')
-
-import matplotlib.pyplot as plt
-
-plt.ioff()
 
 print "Reading in 100 Graph."
 sys.stdout.flush()
