@@ -43,7 +43,7 @@ def between_parallel(G, processes = None):
     return bt_c
 
 
-print "Calculating betweeness"
+print "Calculating betweenness"
 sys.stdout.flush()
 bt = between_parallel(g)
 top = 10
@@ -57,10 +57,10 @@ for max_key, max_val in max_nodes:
 
 print "Storing to file"
 sys.stdout.flush()
-with open('betweeness_colours_100.pickle', 'wb+') as handle:
+with open('betweenness_colours_100.pickle', 'wb+') as handle:
     pickle.dump(bt_colors, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-with open('betweeness_values_100.pickle', 'wb+') as handle:
+with open('betweenness_values_100.pickle', 'wb+') as handle:
     pickle.dump(bt_values, handle, protocol=pickle.HIGHEST_PROTOCOL)
   
 
