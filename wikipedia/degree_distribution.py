@@ -17,10 +17,6 @@ print "Graph Imported, analysing and plotting node degrees."
 
 N, K = g.order(), g.size()
 avg_deg = float(K) / N
-# 
-# print "Nodes: ", N
-# print "Edges: ", K
-# print "Average Degree: ", avg_deg
 
 in_degrees = g.in_degree()
 in_values = sorted(set(in_degrees.values()))
@@ -35,13 +31,22 @@ print "Drawing Degree Distributions (log scale)"
 plt.figure()
 plt.grid(True)
 plt.loglog(in_values, in_hist, 'ro-')
-plt.loglog(out_values, out_hist, 'bv-')
-plt.legend(['In-Degree', 'Out-Degree'])
-plt.xlabel('Degree')
+plt.xlabel('In-Degree')
 plt.ylabel('Number of Nodes')
 plt.title('Wikipedia Talk Network')
 plt.xlim([0, max_degree])
-plt.savefig('results/log_degree_distribution.pdf')
+plt.savefig('results/log_in-degree_distribution.pdf')
+plt.close()
+
+plt.figure()
+plt.grid(True)
+plt.loglog(in_values, in_hist, 'ro-')
+plt.loglog(out_values, out_hist, 'bv-')
+plt.xlabel('Out-Degree')
+plt.ylabel('Number of Nodes')
+plt.title('Wikipedia Talk Network')
+plt.xlim([0, max_degree])
+plt.savefig('results/log_out-degree_distribution.pdf')
 plt.close()
 
 powerlaw = lambda x, amp, index: amp * (x**index)
@@ -83,7 +88,21 @@ plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
 plt.title('Degree Distribution in Wikipedia Talk Network')
 plt.xlim([0, max_degree])
-plt.savefig('results/fit_log_degree_distribution.pdf')
+plt.savefig('results/fit_log_in-degree_distribution.pdf')
+plt.close()
+
+plt.figure()
+plt.grid(True)
+plt.loglog(in_values, powerlaw(in_values, in_amp, in_index),'r-')
+plt.loglog(out_values, powerlaw(out_values, out_amp, out_index),'b-')
+plt.loglog(in_values, in_hist, 'ro')
+plt.loglog(out_values, out_hist, 'bo')
+plt.legend(['In-Degree', 'Out-Degree'])
+plt.xlabel('Degree')
+plt.ylabel('Number of Nodes')
+plt.title('Degree Distribution in Wikipedia Talk Network')
+plt.xlim([0, max_degree])
+plt.savefig('results/fit_log_out-degree_distribution.pdf')
 plt.close()
 
 print "We Done Here."
