@@ -20,7 +20,14 @@ sys.stdout.flush()
 with open('katz.pickle', 'wb+') as handle:
     pickle.dump(katz, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
-  
+def get_top_keys(dictionary, 10):
+    items = dictionary.items()
+    items.sort(reverse=True, key= lambda x: x[1])
+    return map(lambda x: x[0], items[:top])
+
+top_100_btwn = open('top_100_betweeness_nodes.txt', 'wb+')
+for node in get_top_keys(bt, 100):
+    top_100_btwn.write(node)  
 
 # print "Drawing Network."
 # plt.axis("off")
