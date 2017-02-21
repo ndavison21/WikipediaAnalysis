@@ -22,10 +22,11 @@ with open('spring_pos_50.pickle', 'rb') as handle:
 
 print "Drawing Network (50)"
 sys.stdout.flush()
+plt.figure(figsize=(20,20))
 plt.axis("off")
-nx.draw(g, spring_pos, with_labels = False, node_size = 35)
+nx.draw(g, spring_pos, with_labels = False, node_size = 50)
 print "Saving Figure"
-plt.savefig('results/wiki_50.pdf')
+plt.savefig('results/wiki_i50.pdf')
 
 print "Reading in Positions (100)"
 sys.stdout.flush()
@@ -34,7 +35,8 @@ with open('spring_pos_100.pickle', 'rb') as handle:
 
 print "Drawing Network (Spring)"
 sys.stdout.flush()
+plt.figure(figsize=(20,20))
 plt.axis("off")
-nx.draw(g, spring_pos, with_labels = False, node_size = 35)
+nx.draw(g, spring_pos, with_labels = False, node_size = 50)
 print "Saving Figure"
-plt.savefig('results/wiki_100.pdf')
+plt.savefig('results/wiki_i100.pdf')

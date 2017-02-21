@@ -1,4 +1,3 @@
-# Directed graph (each unordered pair of nodes is saved once): WikiTalk.txt 
 2	22920
 3	359
 3	967
