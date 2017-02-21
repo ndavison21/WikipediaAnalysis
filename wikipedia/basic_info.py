@@ -3,19 +3,22 @@ print "Importing Libraries"
 import networkx as nx
 
 print "Reading in Graph (100)."
-g = nx.read_edgelist('data/wiki-Talk_100.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
 
 print "Need to convert to undirected graph."
 g_ud = g.to_undirected()
 
 print "Writing to file"
-file = open("results/basic_info_100.txt", "w+")
+file = open("results/basic_info.txt", "w+")
 print "Graph Info."
+print nx.info(g)
 file.write(nx.info(g))
 print "Number of Strongly Connected Components."
+print nx.number_strongly_connected_components(g)
 file.write("SCC: {}\n".format(nx.number_strongly_connected_components(g)))
 print "Number of Weakly Connected Components."
+print nx.number_weakly_connected_components(g)
 file.write("WCC: {}\n".format(nx.number_weakly_connected_components(g)))
 print "Average Clustering Coefficient."
 file.write("Average Clustering Coefficient: {}\n".format(nx.average_clustering(g_ud)))
