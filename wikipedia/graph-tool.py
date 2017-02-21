@@ -11,23 +11,7 @@ for line in edges:
     edge = edge.split('	')
     e = g.add_edge(edge[0], edge[1])
 
-print "Number of nodes", g.number_of_nodes()
-print "Number of edges", g.number_of_edges()
+print "Graph Imported"
 
-# for v in g.vertices():
-# 	print("vertex:", int(v), "in-degree:", v.in_degree(), "out-degree:", v.out_degree())
-# 	if (int(v) == 10):
-# 		break
-
-# v = g.vertex(rand.randint(0, g.num_vertices()))
-# while True:
-#     print("vertex:", int(v), "in-degree:", v.in_degree(), "out-degree:", v.out_degree())
-
-#     if v.out_degree() == 0:
-#         print("Nowhere else to go... We found the main hub!")
-#         break
-
-#     n_list = []
-#     for w in v.out_neighbours():
-#         n_list.append(w)
-#     v = n_list[randint(0, len(n_list))]
+pos = gt.sfdp_layout(g)
+gt.graph_draw(g, pos, output_size=(1000, 1000), vertex_color=[1,1,1,0], vertex_size=1, edge_pen_width=1.2, output="wiki_1000.png")

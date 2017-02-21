@@ -20,7 +20,9 @@ file.write("WCC: {}\n".format(nx.number_weakly_connected_components(g)))
 print "Average Clustering Coefficient."
 file.write("Average Clustering Coefficient: {}\n".format(nx.average_clustering(g_ud)))
 print "Largest Connected Component"
-conn = max(nx.connected_component_subgraphs(g_ud), key=len)
+
+wiki_components = nx.connected_component_subgraphs(g_ud)
+wiki_components_mc = wiki_components[0]
 file.write("Largest Connected Component")
 file.write(nx.info(g))
 print "Average Path Length in Connected Component"

@@ -12,7 +12,7 @@ import numpy as np
 from scipy import optimize
 
 print "Reading in Graph."
-g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('cam_ff.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported, analysing and plotting node degrees."
 
 N, K = g.order(), g.size()
@@ -41,7 +41,7 @@ plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
 plt.title('Cambridge Network')
 plt.xlim([0, max_degree])
-plt.savefig('results/log_degree_distribution.pdf')
+plt.savefig('results/log_degree_distribution_ff.pdf')
 plt.close()
 
 powerlaw = lambda x, amp, index: amp * (x**index)
@@ -83,7 +83,7 @@ plt.xlabel('Degree')
 plt.ylabel('Number of Nodes')
 plt.title('Degree Distribution in Cambridge Network')
 plt.xlim([0, max_degree])
-plt.savefig('results/fit_log_degree_distribution.pdf')
+plt.savefig('results/fit_log_degree_distribution_ff.pdf')
 plt.close()
 
 print "We Done Here."
