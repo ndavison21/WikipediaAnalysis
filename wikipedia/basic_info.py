@@ -24,9 +24,9 @@ conn = max(nx.connected_component_subgraphs(g_ud), key=len)
 file.write("Largest Connected Component")
 file.write(nx.info(g))
 print "Average Path Length in Connected Component"
-file.write("Avg Shortest Path Length: {}\n").format(nx.average_shortest_path_length(conn))
+file.write("Avg Shortest Path Length: {}\n".format(nx.average_shortest_path_length(conn)))
 print "Average Clustering in Connected Component"
-file.write("Avg Shortest Path Length: {}\n").format(nx.average_clustering(conn))
+file.write("Avg Shortest Path Length: {}\n".format(nx.average_clustering(conn)))
 file.close()
 
 print "We Done Here."
