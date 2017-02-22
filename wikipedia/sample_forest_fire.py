@@ -23,8 +23,8 @@ print p
 sys.stdout.flush()
 
 while not(finished):
+    print "Sample has", total_nodes, "nodes. Target:", target_nodes
     to_burn.clear()
-
     to_burn.append(rand.choice(g.nodes()))
 
     while to_burn:                
