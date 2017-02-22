@@ -19,6 +19,7 @@ limit = 500
 finished = False
 while not(finished):
     print "Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
+    sys.stdout.flush()
     source = rand.choice(g.nodes())
     node = source
     steps = 0
