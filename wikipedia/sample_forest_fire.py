@@ -4,9 +4,10 @@ import random as rand
 from numpy import random
 from collections import deque
 
-g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
 total_nodes = nx.number_of_nodes(g)
+initial_nodes = total_nodes
 target_nodes = 0.15 * total_nodes
 
 print "Total Nodes:", total_nodes
@@ -23,7 +24,8 @@ print p
 sys.stdout.flush()
 
 while not(finished):
-    print "Sample has", total_nodes, "nodes. Target:", target_nodes
+    print "Start:", initial_nodes, "Current:", total_nodes, "Target:", target_nodes
+    sys.stdout.flush()
     to_burn.clear()
     to_burn.append(rand.choice(g.nodes()))
 
@@ -46,5 +48,5 @@ while not(finished):
 
 print nx.info(g)
 
-outfile = open("wiki-Talk_ff.txt", "wb+")
+outfile = open("data/wiki-Talk_ff.txt", "wb+")
 nx.write_edgelist(g, outfile)
