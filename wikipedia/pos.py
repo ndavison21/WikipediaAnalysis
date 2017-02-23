@@ -7,30 +7,14 @@ import pickle
 
 print "Reading in 100 Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk_100.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 
-print "Drawing Network (20)"
-sys.stdout.flush()
-spring_pos = nx.spring_layout(g, iterations = 20)
-print "Saving Positions"
-sys.stdout.flush()
-with open('spring_pos_20.pickle', 'wb+') as handle:
-    pickle.dump(spring_pos, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-# print "Drawing Network (50)"
-# sys.stdout.flush()
-# spring_pos = nx.spring_layout(g, iterations = 50)
-# print "Saving Positions"
-# sys.stdout.flush()
-# with open('spring_pos_50.pickle', 'wb+') as handle:
-#     pickle.dump(spring_pos, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
-print "Drawing Network (100)"
+print "Drawing Network (rw, 100 iterations)"
 sys.stdout.flush()
 spring_pos = nx.spring_layout(g, iterations = 100)
 print "Saving Positions"
 sys.stdout.flush()
-with open('spring_pos_100.pickle', 'wb+') as handle:
+with open('spring_pos_rw.pickle', 'wb+') as handle:
     pickle.dump(spring_pos, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 

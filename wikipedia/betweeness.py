@@ -8,7 +8,7 @@ import pickle
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk_100.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
 sys.stdout.flush()
 

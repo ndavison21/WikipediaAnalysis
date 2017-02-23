@@ -3,13 +3,13 @@ import sys
 import networkx as nx
 
 print "Reading in Sampled Graph."
-g = nx.read_edgelist('data/wiki-Talk_ff.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 
 print "Convert to undirected graph."
 sys.stdout.flush()
 g_ud = g.to_undirected()
 
-file = open("results/basic_info_ff.txt", "w+")
+file = open("results/basic_info_rw.txt", "w+")
 print "Writing graph info."
 file.write(nx.info(g))
 print "Writing SCCs."
