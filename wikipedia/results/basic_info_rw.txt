@@ -1,0 +1,8 @@
+Name: 
+Type: DiGraph
+Number of nodes: 359158
+Number of edges: 557372
+Average in degree:   1.5519
+Average out degree:   1.5519SCCs: 322941
+WCCs: 991
+Average Clustering Coefficient: 0.0169429164417

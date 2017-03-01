@@ -5,13 +5,13 @@ import networkx as nx
 import pickle
 
 
-print "Reading in 100 Graph."
+print "Reading in Random Walk Graph."
 sys.stdout.flush()
 g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 
-print "Drawing Network (rw, 100 iterations)"
+print "Drawing Network (rw, 50 iterations)"
 sys.stdout.flush()
-spring_pos = nx.spring_layout(g, iterations = 100)
+spring_pos = nx.spring_layout(g, iterations = 50)
 print "Saving Positions"
 sys.stdout.flush()
 with open('spring_pos_rw.pickle', 'wb+') as handle:
