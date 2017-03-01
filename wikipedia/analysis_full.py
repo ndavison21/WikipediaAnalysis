@@ -39,8 +39,12 @@ connected_subgraphs = nx.connected_component_subgraphs(g_ud)
 print "Getting connected giant component."
 sys.stdout.flush()
 sg = max(connected_subgraphs, key=len)
+print "Basic Giant Component Info."
+sys.stdout.flush()
 file.write("\n*** GIANT COMPONENT ***\n")
 file.write(nx.info(g))
+print "Average Shortest Path Length of Giant Component."
+sys.stdout.flush()
 file.write("\nAverage shortest path length {}\n".format(nx.average_shortest_path_length(sg)))
 file.write("Diameter: {}\n".format(nx.diameter(sg)))
 

@@ -75,10 +75,17 @@ in_amp = 10.0**in_pfinal[0]
 out_index = out_pfinal[1]
 out_amp = 10.0**out_pfinal[0]
 
+print "in_index {}".format(in_index)
+print "in_amp {}".format(in_amp)
+
+print "out_index {}".format(out_index)
+print "out_amp {}".format(out_amp)
+
+
 print "Drawing Degree Distributions (log scale with line to fit)"
 plt.figure()
 plt.grid(True)
-plt.loglog(in_values, powerlaw(in_values, in_amp, in_index),'r-')
+plt.loglog(in_values, powerlaw(in_values, in_amp, in_index),'ro')
 plt.loglog(in_values, in_hist, 'ro')
 plt.xlabel('In-Degree')
 plt.ylabel('Number of Nodes')

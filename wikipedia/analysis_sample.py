@@ -16,9 +16,9 @@ print "Convert to undirected graph."
 sys.stdout.flush()
 g_ud = g.to_undirected()
 
-file = open("results/analysis_sample.txt", "w+")
+file = open("results/sample/basic_info.txt", "w+")
 
-file.write("*** Full Graph ***\n")
+file.write("*** Sample Graph ***\n")
 print "Basic Graph Info."
 sys.stdout.flush()
 file.write(nx.info(g))
@@ -31,20 +31,25 @@ for (u,v) in g.edges_iter():
 		reciprocated = reciprocated + 1
 file.write("\nReciprocity: {}\n".format(float(reciprocated)/nx.number_of_edges(g)))
 
-file.flush()
+file.close()
+file = open("results/sample/giant_component.txt", "w+")
 
-print "Getting connected subgraphs."
-sys.stdout.flush()
-connected_subgraphs = nx.connected_component_subgraphs(g_ud)
 print "Getting connected giant component."
 sys.stdout.flush()
-sg = max(connected_subgraphs, key=len)
+sg = g = nx.read_edgelist('data/sample_giant_component.txt', create_using=nx.Graph(), nodetype=int)
+print "Basic Giant Component Info."
+sys.stdout.flush()
 file.write("\n*** GIANT COMPONENT ***\n")
 file.write(nx.info(g))
-file.write("\nAverage shortest path length {}\n".format(nx.average_shortest_path_length(sg)))
+print "Diameter of Giant Component"
+sys.stdout.flush()
 file.write("Diameter: {}\n".format(nx.diameter(sg)))
+print "Average Shortest Path Length of Giant Component."
+sys.stdout.flush()
+file.write("\nAverage shortest path length {}\n".format(nx.average_shortest_path_length(sg)))
 
-file.flush()
+file.close()
+file = open("results/sample/ranking_nodes.txt", "w+")
 
 print "Ranking Nodes"
 file.write("\n*** RANKING NODES ***\n")
