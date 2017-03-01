@@ -32,23 +32,6 @@ for (u,v) in g.edges_iter():
 file.write("\nReciprocity: {}\n".format(float(reciprocated)/nx.number_of_edges(g)))
 
 file.close()
-file = open("results/sample/giant_component.txt", "w+")
-
-print "Getting connected giant component."
-sys.stdout.flush()
-sg = g = nx.read_edgelist('data/sample_giant_component.txt', create_using=nx.Graph(), nodetype=int)
-print "Basic Giant Component Info."
-sys.stdout.flush()
-file.write("\n*** GIANT COMPONENT ***\n")
-file.write(nx.info(g))
-print "Diameter of Giant Component"
-sys.stdout.flush()
-file.write("Diameter: {}\n".format(nx.diameter(sg)))
-print "Average Shortest Path Length of Giant Component."
-sys.stdout.flush()
-file.write("\nAverage shortest path length {}\n".format(nx.average_shortest_path_length(sg)))
-
-file.close()
 file = open("results/sample/ranking_nodes.txt", "w+")
 
 print "Ranking Nodes"
