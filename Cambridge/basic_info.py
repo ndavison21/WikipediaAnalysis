@@ -21,7 +21,7 @@ file.write("Average Clustering Coefficient: {}\n".format(nx.average_clustering(g
 sys.stdout.flush()
 print "Finding Largest Connected Component"
 wiki_components = nx.connected_component_subgraphs(g_ud)
-wiki_components_mc = wiki_components[0]
+wiki_components_mc = max(wiki_components, key=len)
 print "Writing component info."
 file.write("Largest Connected Component\n")
 file.write(nx.info(g))

@@ -6,3 +6,10 @@ Average in degree:   3.8333
 Average out degree:   3.8333SCCs: 175
 WCCs: 25
 Average Clustering Coefficient: 0.156643336924
+Largest Connected Component
+Name: 
+Type: DiGraph
+Number of nodes: 912
+Number of edges: 3496
+Average in degree:   3.8333
+Average out degree:   3.8333
