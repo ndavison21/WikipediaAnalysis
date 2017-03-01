@@ -7,7 +7,7 @@ sys.stdout.flush()
 g = nx.read_edgelist('data/sample_giant_component.txt', create_using=nx.Graph(), nodetype=int)
 
 file = open("results/sample/giant_component.txt", "w+")
-file.write(g.info)
+file.write(nx.info(g))
 file.flush()
 
 print "\nFinding All Pairs Shortest Path Lengths"
