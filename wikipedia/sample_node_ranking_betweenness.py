@@ -3,7 +3,6 @@ print "Importing Libraries"
 import networkx as nx
 from multiprocessing import Pool, freeze_support
 import itertools
-import pylab as plt
 import sys
 
 print "Reading in Graph."

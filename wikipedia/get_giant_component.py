@@ -5,7 +5,7 @@ import networkx as nx
 print "Reading in Sample Graph."
 sys.stdout.flush()
 g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
-print "Graph Imported, analysing and plotting node degrees."
+print "Graph Imported, getting giant component."
 
 g_ud = g.to_undirected()
 
@@ -18,6 +18,9 @@ sg = max(connected_subgraphs, key=len)
 print "Got connected giant component"
 
 file = open("data/sample_giant_component.txt", "w+")
-for edge in sg.edges_iter():
-	file.write("{} {}\n".format(edge[0], edge[1]))
+for u, v in sg.edges_iter():
+	if g.has_edge(u, v):
+		file.write("{} {}\n".format(u, v))
+	if g.has_edge(v, u):
+		file.write("{} {}\n".format(v, u))
 file.close()

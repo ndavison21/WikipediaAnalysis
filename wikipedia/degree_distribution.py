@@ -10,13 +10,34 @@ import networkx as nx
 import pylab as plt
 import numpy as np
 from scipy import optimize
+import sys
+
+def get_top_keys(dictionary, top):
+    min_node = -1
+    min_value = sys.maxint
+    top = dict()
+    for (n, b) in dictionary.iteritems():
+        if len(top) < 20:
+            top[n] = b
+            if b < min_value:
+                min_node = n
+                min_value = b
+        elif b > min_value:
+            del top[min_node]
+            top[n] = b
+            min_value = sys.maxint
+            for (m, c) in top.iteritems():
+                if c < min_value:
+                    min_node = m
+                    min_value = c
+
+    items = sorted(top.iteritems(), key=lambda (k,v): (v,k), reverse=True)
+
+    return items
 
 print "Reading in Graph."
 g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported, analysing and plotting node degrees."
-
-N, K = g.order(), g.size()
-avg_deg = float(K) / N
 
 in_degrees = g.in_degree()
 in_values = sorted(set(in_degrees.values()))
@@ -50,10 +71,22 @@ max_degree = max(max(in_values), max(out_values))
 
 powerlaw = lambda x, amp, index: amp * (x**index)
 
-log_in_values = np.log10(in_values[1:])
-log_in_hist = np.log10(in_hist[1:])
-log_out_values = np.log10(out_values[1:])
-log_out_hist = np.log10(out_hist[1:])
+i = 0
+for v in in_values:
+	if v >= 1000:
+		break
+	i = i + 1
+
+o = 0
+for v in out_values:
+	if v >= 1000:
+		break
+	o = o + 1
+
+log_in_values = np.log10(in_values[1:i])
+log_in_hist = np.log10(in_hist[1:i])
+log_out_values = np.log10(out_values[1:o])
+log_out_hist = np.log10(out_hist[1:o])
 
 
 fitfunc = lambda p, x: p[0] + p[1] * x
@@ -76,35 +109,54 @@ out_index = out_pfinal[1]
 out_amp = 10.0**out_pfinal[0]
 
 
-file = open("results/degree_power_law.txt", "w+")
-file.write("in_index {}\n".format(in_index))
-file.write("in_amp {}\n".format(in_amp))
+# file = open("results/degree_analysis.txt", "w+")
+# file.write("Power Law Characterisitcs\n")
+# file.write("in_index {}\n".format(in_index))
+# file.write("in_amp {}\n".format(in_amp))
 
-file.write("out_index {}\n".format(out_index))
-file.write("out_amp {}\n".format(out_amp))
+# file.write("out_index {}\n".format(out_index))
+# file.write("out_amp {}\n".format(out_amp))
+
+# file.write("\nPower Law Characterisitcs up to 1,000\n")
+# file.write("in_index {}\n".format(in_index))
+# file.write("in_amp {}\n".format(in_amp))
+
+# file.write("out_index {}\n".format(out_index))
+# file.write("out_amp {}\n".format(out_amp))
 
 
-# print "Drawing Degree Distributions (log scale with line to fit)"
-# plt.figure()
-# plt.grid(True)
-# plt.loglog(in_values, powerlaw(in_values, in_amp, in_index),'ro')
-# plt.loglog(in_values, in_hist, 'ro')
-# plt.xlabel('In-Degree')
-# plt.ylabel('Number of Nodes')
-# plt.title('Degree Distribution in Wikipedia Talk Network')
-# plt.xlim([0, max_degree])
-# plt.savefig('results/fit_log_in-degree_distribution.pdf')
-# plt.close()
+# print "Getting top 20 Nodes"
 
-# plt.figure()
-# plt.grid(True)
-# plt.loglog(out_values, powerlaw(out_values, out_amp, out_index),'b-')
-# plt.loglog(out_values, out_hist, 'bo')
-# plt.xlabel('Out-Degree')
-# plt.ylabel('Number of Nodes')
-# plt.title('Degree Distribution in Wikipedia Talk Network')
-# plt.xlim([0, max_degree])
-# plt.savefig('results/fit_log_out-degree_distribution.pdf')
-# plt.close()
+# file.write("\nTop 20 Nodes (In-degree)\n")
+# for n,p in get_top_keys(in_degrees, 20):
+# 	file.write("{} {}\n".format(n, p))
+
+# file.write("\nTop 20 Nodes (Out-degree)\n")
+# for n,p in get_top_keys(out_degrees, 20):
+# 	file.write("{} {}\n".format(n, p))
+
+# file.close()
+
+
+print "Drawing Degree Distributions (log scale with line to fit)"
+plt.figure()
+plt.grid(True)
+plt.loglog(in_values, powerlaw(in_values, in_amp, in_index),'r-')
+plt.loglog(in_values, in_hist, 'ro')
+plt.xlabel('In-Degree')
+plt.ylabel('Number of Nodes')
+plt.xlim([0, max_degree])
+plt.savefig('results/fit_1000_log_in-degree_distribution.pdf')
+plt.close()
+
+plt.figure()
+plt.grid(True)
+plt.loglog(out_values, powerlaw(out_values, out_amp, out_index),'b-')
+plt.loglog(out_values, out_hist, 'bo')
+plt.xlabel('Out-Degree')
+plt.ylabel('Number of Nodes')
+plt.xlim([0, max_degree])
+plt.savefig('results/fit_1000_log_out-degree_distribution.pdf')
+plt.close()
 
 print "We Done Here."

@@ -18,7 +18,7 @@ g_ud = g.to_undirected()
 
 file = open("results/analysis_full.txt", "w+")
 
-file.write("*** Full Graph ***\n")
+file.write("*** Sample Graph ***\n")
 print "Basic Graph Info."
 sys.stdout.flush()
 file.write(nx.info(g))

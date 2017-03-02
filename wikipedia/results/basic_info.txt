@@ -1,0 +1,8 @@
+*** Full Graph ***
+Name: 
+Type: DiGraph
+Number of nodes: 2394385
+Number of edges: 5021410
+Average in degree:   2.0972
+Average out degree:   2.0972
+Reciprocity: 0.144120874416
