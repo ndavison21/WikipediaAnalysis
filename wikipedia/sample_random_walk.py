@@ -22,8 +22,8 @@ limit = 100000
 
 finished = False
 while not(finished):
-    print "Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
-    sys.stdout.flush()
+    # print "Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
+    # sys.stdout.flush()
     source = rand.choice(g.nodes())
     node = source
     steps = 0
@@ -42,6 +42,9 @@ while not(finished):
             if nx.number_of_nodes(g_sample) >= target_nodes:
                 finished = True
                 break
+        if (steps >= limit):
+        print "Steps Limit Reached. Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
+        sys.stdout.flush()
 
 outfile = open("data/wiki-Talk_rw_100000.txt", "wb+")
 nx.write_edgelist(g_sample, outfile)
@@ -55,8 +58,8 @@ limit = 100 * nx.number_of_nodes(g)
 
 finished = False
 while not(finished):
-    print "Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
-    sys.stdout.flush()
+    # print "Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
+    # sys.stdout.flush()
     source = rand.choice(g.nodes())
     node = source
     steps = 0
@@ -75,6 +78,9 @@ while not(finished):
             if nx.number_of_nodes(g_sample) >= target_nodes:
                 finished = True
                 break
+    if (steps >= limit):
+        print "Steps Limit Reached. Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
+        sys.stdout.flush()
 
 outfile = open("data/wiki-Talk_rw_leng.txt", "wb+")
 nx.write_edgelist(g_sample, outfile)
