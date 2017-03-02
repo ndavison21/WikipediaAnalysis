@@ -43,8 +43,8 @@ while not(finished):
                 finished = True
                 break
         if (steps >= limit):
-        print "Steps Limit Reached. Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
-        sys.stdout.flush()
+            print "Steps Limit Reached. Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
+            sys.stdout.flush()
 
 outfile = open("data/wiki-Talk_rw_100000.txt", "wb+")
 nx.write_edgelist(g_sample, outfile)
@@ -78,6 +78,7 @@ while not(finished):
             if nx.number_of_nodes(g_sample) >= target_nodes:
                 finished = True
                 break
+
     if (steps >= limit):
         print "Steps Limit Reached. Sample has", nx.number_of_nodes(g_sample), "nodes. Target:", target_nodes
         sys.stdout.flush()
