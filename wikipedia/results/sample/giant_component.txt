@@ -1,5 +1,0 @@
-Name: 
-Type: Graph
-Number of nodes: 356810
-Number of edges: 541026
-Average degree:   3.0326
