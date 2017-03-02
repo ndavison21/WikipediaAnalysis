@@ -7,7 +7,7 @@ sys.stdout.flush()
 g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported, analysing basic info."
 
-file = open("results/sample/basic_info.txt", "a+")
+file = open("results/sample/basic_info.txt", "w+")
 
 file.write("*** Sample Graph ***\n")
 print "Basic Graph Info."

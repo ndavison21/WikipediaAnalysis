@@ -1,0 +1,9 @@
+*** Sample Graph ***
+Name: 
+Type: DiGraph
+Number of nodes: 137
+Number of edges: 185
+Average in degree:   1.3504
+Average out degree:   1.3504
+Reciprocity: 0.221621621622
+Clustering: 0.0228415542284
