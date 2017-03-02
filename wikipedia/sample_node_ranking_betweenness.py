@@ -1,14 +1,14 @@
 print "Importing Libraries"
 
 import networkx as nx
-from multiprocessing import Pool
+from multiprocessing import Pool, freeze_support
 import itertools
 import pylab as plt
 import sys
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/sample_giant_component.txt', create_using=nx.Graph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported."
 sys.stdout.flush()
 
@@ -70,14 +70,17 @@ def between_parallel(G, processes = None):
     return bt_c
 
 
-print "Calculating betweeness"
-sys.stdout.flush()
-bt = between_parallel(g)
+if __name__ == '__main__':
+    freeze_support()
 
-file = open ("results/sample/top20betweenness.txt", "w+")
-file.write("node betweenness\n")
+    print "Calculating betweeness"
+    sys.stdout.flush()
+    bt = between_parallel(g)
 
-print "Writing details of betweeness"
-sys.stdout.flush()
-for (node, btwn) in get_top_keys(bt, 20):
-    file.write("{} {}\n".format(node,btwn))
+    file = open ("results/sample/top20betweenness.txt", "w+")
+    file.write("node betweenness\n")
+
+    print "Writing details of betweeness"
+    sys.stdout.flush()
+    for (node, btwn) in get_top_keys(bt, 20):
+        file.write("{} {}\n".format(node,btwn))
