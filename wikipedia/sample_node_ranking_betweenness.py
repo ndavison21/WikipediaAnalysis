@@ -8,13 +8,11 @@ import sys
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/sample_giant_component.txt', create_using=nx.Graph(), nodetype=int)
 print "Graph Imported."
 sys.stdout.flush()
 
 def get_top_keys(dictionary, top):
-    # items = dictionary.items()
-    # items.sort(reverse=True, key=lambda x: x[1])
     min_node = -1
     min_value = sys.maxint
     top = dict()
@@ -76,7 +74,7 @@ print "Calculating betweeness"
 sys.stdout.flush()
 bt = between_parallel(g)
 
-file = open ("results/top20betweenness.txt", "w+")
+file = open ("results/sample/top20betweenness.txt", "w+")
 file.write("node betweenness\n")
 
 print "Writing details of betweeness"
