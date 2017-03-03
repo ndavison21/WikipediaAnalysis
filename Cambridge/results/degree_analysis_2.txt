@@ -1,0 +1,11 @@
+Power Law Characterisitcs
+in_index -1.47047620616
+in_amp 264.014021175
+out_index -1.49806350061
+out_amp 276.170628952
+
+Power Law Characterisitcs up to 1,000
+in_index -1.47047620616
+in_amp 264.014021175
+out_index -1.49806350061
+out_amp 276.170628952

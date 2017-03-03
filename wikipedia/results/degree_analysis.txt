@@ -1,14 +1,14 @@
 Power Law Characterisitcs
-in_index -1.78891348174
-in_amp 126268.071235
-out_index -0.973244741234
-out_amp 1839.84347807
-
+in_index -1.77807269009
+in_amp 118505.122552
+out_index -0.990262515199
+out_amp 2071.53981099
+Nodes with in-degree of 0: 25204Nodes with out-degree of 0: 2246783
 Power Law Characterisitcs up to 1,000
-in_index -1.89129459031
-in_amp 208879.429333
-out_index -1.48709607585
-out_amp 32848.3801068
+in_index_1000 -1.87539364995
+in_amp_1000 190631.319927
+out_index_1000 -1.51337056529
+out_amp_1000 38459.669527
 
 Top 20 Nodes (In-degree)
 33 3311

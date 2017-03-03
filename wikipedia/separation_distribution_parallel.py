@@ -3,13 +3,13 @@ print "Importing Libraries"
 import networkx as nx
 from multiprocessing import Pool
 import sys
-import random
 from collections import deque
+from math import floor
 
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
 
 def separation(sources):
@@ -52,14 +52,15 @@ def separation(sources):
 
 p = Pool()
 num_partitions = len(p._pool)
-size_partitions = nx.number_of_nodes(g) / num_partitions
+nodes = g.nodes()
+size_partitions = int(floor(len(nodes) / num_partitions))
 
 print num_partitions, "partitions of size", size_partitions
 sys.stdout.flush()
 
 partitions = list()
 for i in range(0, num_partitions):
-	partitions.append(random.sample(g.nodes(), size_partitions))
+	partitions.append(nodes[i*size_partitions:(i+1)*size_partitions-1])
 
 print num_partitions, "partitions."
 sys.stdout.flush()
@@ -74,7 +75,7 @@ paths = 0
 dist = dists[0]
 for hist in dists:
 	for n in hist:
-		paths += n
+		paths += hist[n]
 		if n in dist:
 			dist[n] += hist[n]
 		else:

@@ -1,0 +1,7 @@
+Number of Paths: 16921750244
+Mean Path Length: 5.39292450481
+Effective Diameter: 6.04232465975
+Proportion of Paths 4 or shorter 0.195728786694
+Proportion of Paths 5 or shorter 0.573118970447
+Proportion of Paths 6 or shorter 0.858667532878
+Proportion of Paths 7 or shorter 0.96386814956

@@ -1,0 +1,55 @@
+Power Law Characterisitcs
+in_index -1.47047620616
+in_amp 264.014021175
+out_index -1.49806350061
+out_amp 276.170628952
+Nodes with in-degree of 0: 60Nodes with out-degree of 0: 63
+Power Law Characterisitcs up to 1,000
+in_index_1000 -1.47047620616
+in_amp_1000 264.014021175
+out_index_1000 -1.49806350061
+out_amp_1000 276.170628952
+
+Top 20 Nodes (In-degree)
+45 122
+14 42
+10 41
+11 38
+117 36
+16 34
+122 31
+55 31
+0 31
+44 29
+35 26
+13 26
+6 26
+172 25
+80 25
+33 25
+180 24
+32 23
+23 23
+156 22
+
+Top 20 Nodes (Out-degree)
+45 119
+11 50
+14 43
+117 38
+10 35
+16 34
+0 34
+55 32
+44 30
+6 28
+156 26
+24 25
+122 24
+33 23
+13 23
+329 20
+180 20
+133 20
+35 20
+22 20

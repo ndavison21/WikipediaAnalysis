@@ -12,7 +12,7 @@ import numpy as np
 from scipy import optimize
 
 print "Reading in Graph."
-g = nx.read_edgelist('cam_ff.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
 print "Graph Imported, analysing and plotting node degrees."
 
 N, K = g.order(), g.size()
@@ -50,6 +50,12 @@ log_in_values = np.log10(in_values[1:])
 log_in_hist = np.log10(in_hist[1:])
 log_out_values = np.log10(out_values[1:])
 log_out_hist = np.log10(out_hist[1:])
+
+print in_values
+print in_hist
+print len(log_in_values), len(log_in_hist)
+print log_in_values
+print log_in_hist
 
 
 fitfunc = lambda p, x: p[0] + p[1] * x

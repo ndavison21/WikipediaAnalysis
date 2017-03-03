@@ -48,45 +48,15 @@ out_values = sorted(set(out_degrees.values()))
 out_hist = [out_degrees.values().count(x) for x in out_values]
 max_degree = max(max(in_values), max(out_values))
 
-# print "Drawing Degree Distributions (log scale)"
-# plt.figure()
-# plt.grid(True)
-# plt.loglog(in_values, in_hist, 'ro-')
-# plt.xlabel('In-Degree')
-# plt.ylabel('Number of Nodes')
-# plt.title('Wikipedia Talk Network')
-# plt.xlim([0, max_degree])
-# plt.savefig('results/log_in-degree_distribution.pdf')
-# plt.close()
-# 
-# plt.figure()
-# plt.grid(True)
-# plt.loglog(out_values, out_hist, 'bv-')
-# plt.xlabel('Out-Degree')
-# plt.ylabel('Number of Nodes')
-# plt.title('Wikipedia Talk Network')
-# plt.xlim([0, max_degree])
-# plt.savefig('results/log_out-degree_distribution.pdf')
-# plt.close()
 
 powerlaw = lambda x, amp, index: amp * (x**index)
 
-i = 0
-for v in in_values:
-	if v >= 1000:
-		break
-	i = i + 1
-
-o = 0
-for v in out_values:
-	if v >= 1000:
-		break
-	o = o + 1
-
-log_in_values = np.log10(in_values[1:i])
-log_in_hist = np.log10(in_hist[1:i])
-log_out_values = np.log10(out_values[1:o])
-log_out_hist = np.log10(out_hist[1:o])
+in_values[0] = 1
+out_values[0] = 1
+log_in_values = np.log10(in_values)
+log_in_hist = np.log10(in_hist)
+log_out_values = np.log10(out_values)
+log_out_hist = np.log10(out_hist)
 
 
 fitfunc = lambda p, x: p[0] + p[1] * x
@@ -109,33 +79,63 @@ out_index = out_pfinal[1]
 out_amp = 10.0**out_pfinal[0]
 
 
-# file = open("results/degree_analysis.txt", "w+")
-# file.write("Power Law Characterisitcs\n")
-# file.write("in_index {}\n".format(in_index))
-# file.write("in_amp {}\n".format(in_amp))
+i = 0
+for v in in_values:
+  if v >= 1000:
+      break
+  i = i + 1
 
-# file.write("out_index {}\n".format(out_index))
-# file.write("out_amp {}\n".format(out_amp))
+o = 0
+for v in out_values:
+  if v >= 1000:
+      break
+  o = o + 1
 
-# file.write("\nPower Law Characterisitcs up to 1,000\n")
-# file.write("in_index {}\n".format(in_index))
-# file.write("in_amp {}\n".format(in_amp))
+pinit = [1.0, -1.0]
+in_fit_1000 = optimize.leastsq(errfunc, pinit,
+                       args=(log_in_values[:i], log_in_hist[:i]), full_output=1)
+out_fit_1000 = optimize.leastsq(errfunc, pinit,
+                       args=(log_out_values[:o], log_out_hist[:o]), full_output=1)
 
-# file.write("out_index {}\n".format(out_index))
-# file.write("out_amp {}\n".format(out_amp))
+in_pfinal_1000 = in_fit_1000[0]
+in_covar_1000 = in_fit_1000[1]
+out_pfinal_1000 = out_fit_1000[0]
+out_covar_1000 = out_fit_1000[1]
+
+in_index_1000 = in_pfinal_1000[1]
+in_amp_1000 = 10.0**in_pfinal_1000[0]
+out_index_1000 = out_pfinal_1000[1]
+out_amp_1000 = 10.0**out_pfinal_1000[0]
 
 
-# print "Getting top 20 Nodes"
+with open("results/degree_analysis.txt", "w+") as file:
+    file.write("Power Law Characterisitcs\n")
+    file.write("in_index {}\n".format(in_index))
+    file.write("in_amp {}\n".format(in_amp))
 
-# file.write("\nTop 20 Nodes (In-degree)\n")
-# for n,p in get_top_keys(in_degrees, 20):
-# 	file.write("{} {}\n".format(n, p))
+    file.write("out_index {}\n".format(out_index))
+    file.write("out_amp {}\n".format(out_amp))
 
-# file.write("\nTop 20 Nodes (Out-degree)\n")
-# for n,p in get_top_keys(out_degrees, 20):
-# 	file.write("{} {}\n".format(n, p))
+    file.write("Nodes with in-degree of 0: {}".format(in_hist[0]))
+    file.write("Nodes with out-degree of 0: {}".format(out_hist[0]))
 
-# file.close()
+    file.write("\nPower Law Characterisitcs up to 1,000\n")
+    file.write("in_index_1000 {}\n".format(in_index_1000))
+    file.write("in_amp_1000 {}\n".format(in_amp_1000))
+
+    file.write("out_index_1000 {}\n".format(out_index_1000))
+    file.write("out_amp_1000 {}\n".format(out_amp_1000))
+
+
+    print "Getting top 20 Nodes"
+
+    file.write("\nTop 20 Nodes (In-degree)\n")
+    for n,p in get_top_keys(in_degrees, 20):
+      file.write("{} {}\n".format(n, p))
+
+    file.write("\nTop 20 Nodes (Out-degree)\n")
+    for n,p in get_top_keys(out_degrees, 20):
+      file.write("{} {}\n".format(n, p))
 
 
 print "Drawing Degree Distributions (log scale with line to fit)"
@@ -146,12 +146,33 @@ plt.loglog(in_values, in_hist, 'ro')
 plt.xlabel('In-Degree')
 plt.ylabel('Number of Nodes')
 plt.xlim([0, max_degree])
-plt.savefig('results/fit_1000_log_in-degree_distribution.pdf')
+plt.savefig('results/fit_log_in-degree_distribution.pdf')
 plt.close()
 
 plt.figure()
 plt.grid(True)
 plt.loglog(out_values, powerlaw(out_values, out_amp, out_index),'b-')
+plt.loglog(out_values, out_hist, 'bo')
+plt.xlabel('Out-Degree')
+plt.ylabel('Number of Nodes')
+plt.xlim([0, max_degree])
+plt.savefig('results/fit_log_out-degree_distribution.pdf')
+plt.close()
+
+print "Drawing Degree Distributions (log scale with line to fit up to 1000)"
+plt.figure()
+plt.grid(True)
+plt.loglog(in_values, powerlaw(in_values, in_amp_1000, in_index_1000),'r-')
+plt.loglog(in_values, in_hist, 'ro')
+plt.xlabel('In-Degree')
+plt.ylabel('Number of Nodes')
+plt.xlim([0, max_degree])
+plt.savefig('results/fit_1000_log_in-degree_distribution.pdf')
+plt.close()
+
+plt.figure()
+plt.grid(True)
+plt.loglog(out_values, powerlaw(out_values, out_amp_1000, out_index_1000),'b-')
 plt.loglog(out_values, out_hist, 'bo')
 plt.xlabel('Out-Degree')
 plt.ylabel('Number of Nodes')
