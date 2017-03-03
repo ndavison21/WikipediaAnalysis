@@ -29,28 +29,25 @@ def separation(sources):
 		i = 0
 
 		while True:
+			print visited
 			if  len(nodes_1) == 0:
 				break
 			i +=1
 			distribution[i] += len(nodes_1)
 			nodes_2 = set()
 			for node in nodes_1:
-				if node in visited:
-					continue
-				else:
+				if node not in visited:
 					visited.add(node)
-					nodes_2.union(g.neighbors(node))
+					nodes_2.update(g.neighbors(node))
 			if  len(nodes_2) == 0:
 				break
 			i += 1
 			distribution[i] += len(nodes_2)
 			nodes_1 = set()
 			for node in nodes_2:
-				if node in visited:
-					continue
-				else:
+				if node not in visited:
 					visited.add(node)
-					nodes_1.union(g.neighbors(node))
+					nodes_1.update(g.neighbors(node))
 
 
 	return distribution
@@ -66,7 +63,7 @@ partitions = list()
 for i in range(0, num_partitions):
 	partitions.append(random.sample(g.nodes(), size_partitions))
 
-print num_partitions, "partitioned."
+print num_partitions, "partitions."
 sys.stdout.flush()
 
 

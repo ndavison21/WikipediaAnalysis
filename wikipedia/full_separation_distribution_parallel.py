@@ -9,12 +9,12 @@ from collections import deque
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
 
 
 def separation(sources):
 	distribution = dict()
-	for i in range (0, 20):
+	for i in range (0, 21):
 		distribution[i] = 0
 
 	for src in sources:
@@ -35,29 +35,25 @@ def separation(sources):
 			distribution[i] += len(nodes_1)
 			nodes_2 = set()
 			for node in nodes_1:
-				if node in visited:
-					continue
-				else:
+				if node not in visited:
 					visited.add(node)
-					nodes_2.union(g.neighbors(node))
+					nodes_2.update(g.neighbors(node))
 			if  len(nodes_2) == 0:
 				break
 			i += 1
 			distribution[i] += len(nodes_2)
 			nodes_1 = set()
 			for node in nodes_2:
-				if node in visited:
-					continue
-				else:
+				if node not in visited:
 					visited.add(node)
-					nodes_1.union(g.neighbors(node))
+					nodes_1.update(g.neighbors(node))
 
 
 	return distribution
 
 p = Pool()
 num_partitions = len(p._pool)
-size_partitions = 80 / num_partitions
+size_partitions = 8000 / num_partitions
 
 print num_partitions, "partitions of size", size_partitions
 sys.stdout.flush()
@@ -66,7 +62,7 @@ partitions = list()
 for i in range(0, num_partitions):
 	partitions.append(random.sample(g.nodes(), size_partitions))
 
-print num_partitions, "partitioned."
+print num_partitions, "partitions."
 sys.stdout.flush()
 
 
