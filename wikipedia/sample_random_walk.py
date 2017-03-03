@@ -1,7 +1,6 @@
 import sys
 import networkx as nx
 import random as rand
-from numpy import random
 
 print "Reading Graph"
 sys.stdout.flush()
