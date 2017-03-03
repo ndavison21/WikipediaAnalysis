@@ -8,7 +8,7 @@ from numpy import histogram
 
 print "Reading in Graph."
 sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk_rw.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 def clustering(sources):
 	return nx.clustering(g, sources)
@@ -25,22 +25,22 @@ partitions = list()
 for i in range(0, num_partitions):
 	partitions.append(nodes[i*size_partitions:(i+1)*size_partitions-1])
 
-print num_partitions, "partitions."
-sys.stdout.flush()
 
 clusts = p.map(clustering, partitions)
 clust = clusts[0]
-for c in clusts:
-	for n, nc in c:
-		clust[n] = c
 
-hist = histogram(clust, bins=10)
 
-with open("results/clustering_hist.txt", "w+") as fp:
+for i in range(1,num_partitions):
+	for n, nc in clusts[i].items():
+		clust[n] = nc
+
+hist = histogram(clust.values(), bins=10)
+
+with open("results/clustering_hist.txt", "w+") as file:
 	h, e  = hist
-	file.write("Values")
+	file.write("Values\n")
 	for i in h:
 		file.write("{}\n".format(i))
-	file.write("Edges")
+	file.write("Edges\n")
 	for i in e:
 		file.write("{}\n".format(i))
