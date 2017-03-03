@@ -52,7 +52,7 @@ def separation(sources):
 
 p = Pool()
 num_partitions = len(p._pool)
-size_partitions = 10000 / num_partitions
+size_partitions = nx.number_of_nodes(g) / num_partitions
 
 print num_partitions, "partitions of size", size_partitions
 sys.stdout.flush()
@@ -70,50 +70,19 @@ dists = p.map(separation, partitions)
 print "Complete. Writing to file."
 sys.stdout.flush()
 
+paths = 0
 dist = dists[0]
 for hist in dists:
 	for n in hist:
+		paths += n
 		if n in dist:
 			dist[n] += hist[n]
 		else:
 			dist[n] = hist[n]
 
-with open("results/separation_10000_parallel.txt", "w+") as file:
+with open("data/separation_full_parallel.txt", "w+") as file:
 	for key,value in dist.iteritems():
-		file.write("{} {}\n".format(key, value))
+		file.write("{} {} {}\n".format(key, value, float(value)/paths))
 	file.close()
 
-p = Pool()
-num_partitions = len(p._pool)
-size_partitions = 100000 / num_partitions
-
-print num_partitions, "partitions of size", size_partitions
-sys.stdout.flush()
-
-partitions = list()
-for i in range(0, num_partitions):
-	partitions.append(random.sample(g.nodes(), size_partitions))
-
-print num_partitions, "partitions."
-sys.stdout.flush()
-
-
-dists = p.map(separation, partitions)
-
-print "Complete. Writing to file."
-sys.stdout.flush()
-
-dist = dists[0]
-for hist in dists:
-	for n in hist:
-		if n in dist:
-			dist[n] += hist[n]
-		else:
-			dist[n] = hist[n]
-
-with open("results/separation_100000_parallel.txt", "w+") as file:
-	for key,value in dist.iteritems():
-		file.write("{} {}\n".format(key, value))
-	file.close()
-
-print "we done here"
+print "We done here."
