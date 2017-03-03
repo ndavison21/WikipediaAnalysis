@@ -4,6 +4,7 @@ import networkx as nx
 from multiprocessing import Pool
 import sys
 import random
+from collections import deque
 
 
 print "Reading in Graph."
@@ -13,18 +14,45 @@ g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=in
 
 def separation(sources):
 	distribution = dict()
+	for i in range (0, 20):
+		distribution[i] = 0
+
 	for src in sources:
 		print "source: ", src
 		sys.stdout.flush()
-		for dest in g.nodes():
-			try:
-				l = nx.shortest_path_length(g, src, dest)
-				if l in distribution:
-					distribution[l] = distribution[l] + 1
+
+		visited = set()
+		nodes_1 = set(g.neighbors(src))
+		nodes_2 = set()
+
+		b = True
+		i = 0
+
+		while True:
+			if  len(nodes_1) == 0:
+				break
+			i +=1
+			distribution[i] += len(nodes_1)
+			nodes_2 = set()
+			for node in nodes_1:
+				if node in visited:
+					continue
 				else:
-					distribution[l] = 1
-			except nx.NetworkXNoPath:
-				continue
+					visited.add(node)
+					nodes_2.union(g.neighbors(node))
+			if  len(nodes_2) == 0:
+				break
+			i += 1
+			distribution[i] += len(nodes_2)
+			nodes_1 = set()
+			for node in nodes_2:
+				if node in visited:
+					continue
+				else:
+					visited.add(node)
+					nodes_1.union(g.neighbors(node))
+
+
 	return distribution
 
 p = Pool()
@@ -49,7 +77,6 @@ sys.stdout.flush()
 
 dist = dists[0]
 for hist in dists:
-	print hist
 	for n in hist:
 		if n in dist:
 			dist[n] += hist[n]
