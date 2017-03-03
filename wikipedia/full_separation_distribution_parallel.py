@@ -53,7 +53,7 @@ def separation(sources):
 
 p = Pool()
 num_partitions = len(p._pool)
-size_partitions = 8000 / num_partitions
+size_partitions = 10000 / num_partitions
 
 print num_partitions, "partitions of size", size_partitions
 sys.stdout.flush()
@@ -79,7 +79,40 @@ for hist in dists:
 		else:
 			dist[n] = hist[n]
 
-with open("results/separation_8000_parallel.txt", "w+") as file:
+with open("results/separation_10000_parallel.txt", "w+") as file:
+	for key,value in dist.iteritems():
+		file.write("{} {}\n".format(key, value))
+	file.close()
+
+p = Pool()
+num_partitions = len(p._pool)
+size_partitions = 100000 / num_partitions
+
+print num_partitions, "partitions of size", size_partitions
+sys.stdout.flush()
+
+partitions = list()
+for i in range(0, num_partitions):
+	partitions.append(random.sample(g.nodes(), size_partitions))
+
+print num_partitions, "partitions."
+sys.stdout.flush()
+
+
+dists = p.map(separation, partitions)
+
+print "Complete. Writing to file."
+sys.stdout.flush()
+
+dist = dists[0]
+for hist in dists:
+	for n in hist:
+		if n in dist:
+			dist[n] += hist[n]
+		else:
+			dist[n] = hist[n]
+
+with open("results/separation_100000_parallel.txt", "w+") as file:
 	for key,value in dist.iteritems():
 		file.write("{} {}\n".format(key, value))
 	file.close()
