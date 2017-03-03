@@ -9,7 +9,7 @@ g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=in
 
 
 i=0
-nodes = random.sample(g.nodes(), 80)
+nodes = random.sample(g.nodes(), 8000)
 distribution = dict()
 for src in nodes:
 	i = i + 1

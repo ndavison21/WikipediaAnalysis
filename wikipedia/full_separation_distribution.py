@@ -9,11 +9,16 @@ g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=i
 
 
 i=0
+failed = 0
 nodes = random.sample(g.nodes(), 8000)
 distribution = dict()
 for src in nodes:
+	print "No path to", failed, "nodes"
+	print "Node", i, ":", src
+	sys.stdout.flush()
+	failed = 0
 	i = i + 1
-	for dest in g.nodes():
+	for dest in random.sample(g.nodes(), 100000):
 		try:
 			l = nx.shortest_path_length(g, src, dest)
 			if l in distribution:
@@ -21,6 +26,7 @@ for src in nodes:
 			else:
 				distribution[l] = 1
 		except nx.NetworkXNoPath:
+			failed = failed + 1
 			continue
 	if i == 1000:
 		print "1000 done"
