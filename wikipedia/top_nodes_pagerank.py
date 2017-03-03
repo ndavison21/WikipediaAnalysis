@@ -13,9 +13,10 @@ g = read_edgelist('data/wiki-Talk.txt', create_using=DiGraph(), nodetype=int)
 print "PageRank."
 stdout.flush()
 
+pagerank = pagerank_scipy(g)
+
 file = open("results/pagerank.txt", "w+")
 file.write("Top 100 Nodes by PageRank\n")
-pagerank = pagerank_scipy(g)
 for node in get_top_keys(pagerank, 100):
 	file.write("{}, {}\n".format(node[0], node[1]))
 file.close()
