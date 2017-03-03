@@ -18,7 +18,6 @@ def separation(sources):
 		distribution[i] = 0
 
 	for src in sources:
-		print "source: ", src
 		sys.stdout.flush()
 
 		visited = set()
@@ -116,3 +115,5 @@ with open("results/separation_100000_parallel.txt", "w+") as file:
 	for key,value in dist.iteritems():
 		file.write("{} {}\n".format(key, value))
 	file.close()
+
+print "we done here"
