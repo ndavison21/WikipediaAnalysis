@@ -13,7 +13,7 @@ g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=i
 print "Katz."
 stdout.flush()
 
-katz = nx.katz_centrality(g)
+katz = nx.katz_centrality(g, max_iter=100000)
 
 file = open("results/katz.txt", "w+")
 file.write("Top 100 Nodes by katz centrality\n")

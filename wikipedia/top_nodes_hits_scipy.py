@@ -1,4 +1,4 @@
-from networkx import DiGraph, read_edgelist, hits
+from networkx import DiGraph, read_edgelist, hits_scipy
 from sys import stdout
 
 def get_top_keys(dictionary, top):
@@ -13,7 +13,7 @@ g = read_edgelist('data/wiki-Talk.txt', create_using=DiGraph(), nodetype=int)
 print "HITS."
 stdout.flush()
 
-hubs,authorities = hits(g)
+hubs,authorities = hits_scipy(g)
 
 file = open("results/hubs.txt", "w+")
 file.write("Top 100 Hubs by HITS\n")
