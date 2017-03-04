@@ -10,7 +10,7 @@ print "Reading in Graph."
 sys.stdout.flush()
 g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
-def clustering(sources):
+def clust_fun(sources):
 	return nx.clustering(g, sources)
 
 p = Pool()
@@ -26,7 +26,7 @@ for i in range(0, num_partitions):
 	partitions.append(nodes[i*size_partitions:(i+1)*size_partitions-1])
 
 
-clusts = p.map(clustering, partitions)
+clusts = p.map(clust_fun, partitions)
 clust = clusts[0]
 
 
