@@ -65,7 +65,7 @@ def get_top_keys(dictionary, top):
 
 print "Reading in Full Graph."
 stdout.flush()
-g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
 print "Katz."
 stdout.flush()
