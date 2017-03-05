@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Feb 16 09:50:49 2017
-
-@author: Nathanael
-"""
 print "Importing Libraries"
 
 import networkx as nx
@@ -108,7 +102,7 @@ out_index_1000 = out_pfinal_1000[1]
 out_amp_1000 = 10.0**out_pfinal_1000[0]
 
 
-with open("results/degree_analysis.txt", "w+") as file:
+with open("results/degree_analysis_2.txt", "w+") as file:
     file.write("Power Law Characterisitcs\n")
     file.write("in_index {}\n".format(in_index))
     file.write("in_amp {}\n".format(in_amp))
@@ -129,13 +123,15 @@ with open("results/degree_analysis.txt", "w+") as file:
 
     print "Getting top 20 Nodes"
 
-    file.write("\nTop 20 Nodes (In-degree)\n")
+    file.write("\nTop 20 Nodes by In-degree\n")
+    file.write("Node, In-Degree, Out-Degree\n")
     for n,p in get_top_keys(in_degrees, 20):
-      file.write("{} {}\n".format(n, p))
+      file.write("{} {} {}\n".format(n, p, out_degrees[n]))
 
-    file.write("\nTop 20 Nodes (Out-degree)\n")
+    file.write("\nTop 20 Nodes by Out-degree\n")
+    file.write("Node, Out-Degree, In-Degree\n")
     for n,p in get_top_keys(out_degrees, 20):
-      file.write("{} {}\n".format(n, p))
+      file.write("{} {} {}\n".format(n, p, in_degrees[n]))
 
 
 print "Drawing Degree Distributions (log scale with line to fit)"
