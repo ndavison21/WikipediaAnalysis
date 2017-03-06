@@ -8,17 +8,10 @@ from numpy import histogram
 
 print "Reading in Graph."
 stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
+g = nx.read_edgelist('data/wik-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 def clust_fun(sources):
 	return nx.clustering(g, sources)
-
-
-print "Reading in Graph."
-stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
-
-
 
 p = Pool()
 num_partitions = len(p._pool)
@@ -42,7 +35,15 @@ for i in range(1,num_partitions):
 	for n, nc in clusts[i].items():
 		clust[n] = nc
 
-hist = histogram(clust.values(), bins=10)
+print "Writing node clutsering to file"
+stdout.flush()
+with open("data.node_clustering.txt", "w+") as file:
+	for n, nc in clust.iteritems():
+		file.write("{} {}".format(n, nc))
+
+print "Creating Histogram"
+stdout.flush()
+hist = histogram(clust.values(), bins=100)
 
 with open("results/clustering_hist.txt", "w+") as file:
 	h, e  = hist
