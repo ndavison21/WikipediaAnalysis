@@ -72,13 +72,13 @@ print num_partitions, "partitions."
 sys.stdout.flush()
 
 
-dists = p.map(separation, node_partitions)
+dists = p.imap(separation, node_partitions)
 
 print "Complete. Writing to file."
 sys.stdout.flush()
 
 paths = 0
-dist = dists[0]
+dist = dict()
 for hist in dists:
 	for n in hist:
 		paths += hist[n]
