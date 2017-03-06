@@ -10,7 +10,6 @@ import itertools
 
 print "Reading in Graph."
 stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 def partitions(nodes, n):
     nodes_iter = iter(nodes)
@@ -25,7 +24,7 @@ if __name__ == '__main__':
 
 	print "Reading in Graph."
 	stdout.flush()
-	g = nx.read_edgelist('wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
+	g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 	clust_fun = partial(nx.clustering, g)
 
