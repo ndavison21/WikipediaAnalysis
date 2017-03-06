@@ -34,12 +34,10 @@ if __name__ == '__main__':
 
 	npartitions = list(partitions(g.nodes(), size_partitions))
 
-	clusts = p.map(clust_fun, npartitions)
+	# clusts = p.imap_unordered(clust_fun, npartitions)
 
-	print "Writing node clutsering to file"
-	stdout.flush()
 	with open("data/node_clustering.txt", "w+") as file:
-		for c in clusts:
+		for c in p.imap_unordered(clust_fun, npartitions):
 			for n, nc in c.iteritems():
 				file.write("{} {}\n".format(n, nc))
 

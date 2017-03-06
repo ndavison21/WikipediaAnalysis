@@ -72,15 +72,14 @@ if __name__ == '__main__':
 
 	npartitions = list(partitions(g.nodes(), size_partitions))
 
-	clusts = p.imap(sep_fun, npartitions)
+	# clusts = p.imap(sep_fun, npartitions)
 
 	print "Writing node separation to file"
 	stdout.flush()
 	with open("data/node_separation.txt", "w+") as file:
-		for c in clusts:
+		for c in p.imap_unordered(sep_fun, npartitions)::
 			for n, nc in c.iteritems():
 				file.write("{} {}\n".format(n, nc))
 
 
 	print "We done here."
-	
