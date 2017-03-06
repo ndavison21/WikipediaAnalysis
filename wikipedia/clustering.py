@@ -8,7 +8,7 @@ from numpy import histogram
 
 print "Reading in Graph."
 stdout.flush()
-g = nx.read_edgelist('data/wik-Talk.txt', create_using=nx.Graph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 def clust_fun(sources):
 	return nx.clustering(g, sources)
