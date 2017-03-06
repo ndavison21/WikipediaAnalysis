@@ -1,10 +1,10 @@
-print "Importing Libraries"
 
 import networkx as nx
 from multiprocessing import Pool
 import sys
 from collections import deque
 from math import floor
+import itertools
 
 
 print "Reading in Graph."
@@ -50,23 +50,29 @@ def separation(sources):
 
 	return distribution
 
+def partitions(nodes, n):
+    nodes_iter = iter(nodes)
+    while True:
+        partition = tuple(itertools.islice(nodes_iter,n))
+        if not partition:
+            return
+        yield partition
+
 p = Pool()
 num_partitions = len(p._pool)
 nodes = g.nodes()
-size_partitions = int(floor(len(nodes) / num_partitions))
+size_partitions = int(len(nodes) / num_partitions)
 
 print num_partitions, "partitions of size", size_partitions
 sys.stdout.flush()
 
-partitions = list()
-for i in range(0, num_partitions):
-	partitions.append(nodes[i*size_partitions:(i+1)*size_partitions-1])
+node_partitions = list(partitions(nodes, size_partitions))
 
 print num_partitions, "partitions."
 sys.stdout.flush()
 
 
-dists = p.map(separation, partitions)
+dists = p.map(separation, node_partitions)
 
 print "Complete. Writing to file."
 sys.stdout.flush()

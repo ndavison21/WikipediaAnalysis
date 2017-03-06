@@ -4,6 +4,7 @@ from multiprocessing import Pool
 import sys
 from collections import deque
 from math import floor
+import itertools
 
 
 print "Reading in Graph."
@@ -71,7 +72,7 @@ print num_partitions, "partitions."
 sys.stdout.flush()
 
 
-dists = p.imap(separation, node_partitions)
+dists = p.map(separation, node_partitions)
 
 print "Complete. Writing to file."
 sys.stdout.flush()
