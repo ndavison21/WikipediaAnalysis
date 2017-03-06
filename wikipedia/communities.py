@@ -7,7 +7,7 @@ import json
 
 print "Reading in Graph."
 stdout.flush()
-g = nx.read_edgelist('cambridge_net.txt', create_using=nx.Graph(), nodetype=int)
+g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 
 print "Claculating Best Partition."

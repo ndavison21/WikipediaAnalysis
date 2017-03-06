@@ -7,7 +7,7 @@ from math import floor
 from numpy import histogram
 
 print "Reading in Graph."
-sys.stdout.flush()
+stdout.flush()
 g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
 def clust_fun(sources):
