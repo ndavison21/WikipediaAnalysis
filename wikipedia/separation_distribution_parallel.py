@@ -1,18 +1,22 @@
+print "Importing Libraries"
 
 import networkx as nx
 from multiprocessing import Pool
-import sys
-from collections import deque
+from functools import partial
+from sys import stdout
 from math import floor
+from numpy import histogram
 import itertools
 
+def partitions(nodes, n):
+    nodes_iter = iter(nodes)
+    while True:
+        partition = tuple(itertools.islice(nodes_iter,n))
+        if not partition:
+            return
+        yield partition
 
-print "Reading in Graph."
-sys.stdout.flush()
-g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
-
-
-def separation(sources):
+def separation(g, sources):
 	distribution = dict()
 	for i in range (0, 21):
 		distribution[i] = 0
@@ -48,48 +52,35 @@ def separation(sources):
 					nodes_1.update(g.neighbors(node))
 
 
-	return distribution
-
-def partitions(nodes, n):
-    nodes_iter = iter(nodes)
-    while True:
-        partition = tuple(itertools.islice(nodes_iter,n))
-        if not partition:
-            return
-        yield partition
-
-p = Pool()
-num_partitions = len(p._pool)
-nodes = g.nodes()
-size_partitions = int(len(nodes) / num_partitions)
-
-print num_partitions, "partitions of size", size_partitions
-sys.stdout.flush()
-
-node_partitions = list(partitions(nodes, size_partitions))
-
-print num_partitions, "partitions."
-sys.stdout.flush()
+	return distribution 
 
 
-dists = p.imap(separation, node_partitions)
+if __name__ == '__main__':
 
-print "Complete. Writing to file."
-sys.stdout.flush()
+	print "Reading in Graph."
+	stdout.flush()
+	g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.Graph(), nodetype=int)
 
-paths = 0
-dist = dict()
-for hist in dists:
-	for n in hist:
-		paths += hist[n]
-		if n in dist:
-			dist[n] += hist[n]
-		else:
-			dist[n] = hist[n]
+	sep_fun = partial(separation, g)
 
-with open("data/separation_full_parallel.txt", "w+") as file:
-	for key,value in dist.iteritems():
-		file.write("{} {} {}\n".format(key, value, float(value)/paths))
-	file.close()
+	p = Pool()
+	num_partitions = len(p._pool)
+	size_partitions = int(len(g) / num_partitions)
 
-print "We done here."
+	print num_partitions, "partitions of size", size_partitions
+	stdout.flush()
+
+	npartitions = list(partitions(g.nodes(), size_partitions))
+
+	clusts = p.imap(sep_fun, npartitions)
+
+	print "Writing node separation to file"
+	stdout.flush()
+	with open("data/node_separation.txt", "w+") as file:
+		for c in clusts:
+			for n, nc in c.iteritems():
+				file.write("{} {}\n".format(n, nc))
+
+
+	print "We done here."
+	

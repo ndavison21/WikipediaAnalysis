@@ -34,7 +34,7 @@ if __name__ == '__main__':
 
 	npartitions = list(partitions(g.nodes(), size_partitions))
 
-	clusts = p.imap(clust_fun, npartitions)
+	clusts = p.map(clust_fun, npartitions)
 
 	print "Writing node clutsering to file"
 	stdout.flush()
