@@ -8,9 +8,6 @@ from math import floor
 from numpy import histogram
 import itertools
 
-print "Reading in Graph."
-stdout.flush()
-
 def partitions(nodes, n):
     nodes_iter = iter(nodes)
     while True:
@@ -42,46 +39,9 @@ if __name__ == '__main__':
 	clusts = p.imap(clust_fun, npartitions)
 	clust = dict()
 
-	for c in clusts:
-		for n, nc in c.iteritems():
-			clust[n] = nc
-
 	print "Writing node clutsering to file"
 	stdout.flush()
 	with open("data/node_clustering.txt", "w+") as file:
-		for n, nc in clust.iteritems():
-			file.write("{} {}\n".format(n, nc))
-
-	print "Creating Histograms"
-	stdout.flush()
-
-	hist = histogram(clust.values(), bins=1000)
-	with open("results/clustering_hist_1000.txt", "w+") as file:
-		h, e  = hist
-		file.write("Values\n")
-		for i in h:
-			file.write("{}\n".format(i))
-		file.write("Edges\n")
-		for i in e:
-			file.write("{}\n".format(i))
-
-	
-	hist = histogram(clust.values(), bins=10000)
-	with open("results/clustering_hist_10000.txt", "w+") as file:
-		h, e  = hist
-		file.write("Values\n")
-		for i in h:
-			file.write("{}\n".format(i))
-		file.write("Edges\n")
-		for i in e:
-			file.write("{}\n".format(i))
-
-	hist = histogram(clust.values(), bins=100000)
-	with open("results/clustering_hist_100000.txt", "w+") as file:
-		h, e  = hist
-		file.write("Values\n")
-		for i in h:
-			file.write("{}\n".format(i))
-		file.write("Edges\n")
-		for i in e:
-			file.write("{}\n".format(i))
+		for c in clusts:
+			for n, nc in c.iteritems():
+				file.write("{} {}\n".format(n, nc))
