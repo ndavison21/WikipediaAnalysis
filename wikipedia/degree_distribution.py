@@ -1,7 +1,6 @@
 print "Importing Libraries"
 
 import networkx as nx
-import pylab as plt
 import numpy as np
 from scipy import optimize
 import sys
@@ -102,7 +101,7 @@ out_index_1000 = out_pfinal_1000[1]
 out_amp_1000 = 10.0**out_pfinal_1000[0]
 
 
-with open("results/degree_analysis_2.txt", "w+") as file:
+with open("results/degree_analysis.txt", "w+") as file:
     file.write("Power Law Characterisitcs\n")
     file.write("in_index {}\n".format(in_index))
     file.write("in_amp {}\n".format(in_amp))
@@ -110,8 +109,8 @@ with open("results/degree_analysis_2.txt", "w+") as file:
     file.write("out_index {}\n".format(out_index))
     file.write("out_amp {}\n".format(out_amp))
 
-    file.write("Nodes with in-degree of 0: {}".format(in_hist[0]))
-    file.write("Nodes with out-degree of 0: {}".format(out_hist[0]))
+    file.write("Nodes with in-degree of 0: {}\n".format(in_hist[0]))
+    file.write("Nodes with out-degree of 0: {}\n".format(out_hist[0]))
 
     file.write("\nPower Law Characterisitcs up to 1,000\n")
     file.write("in_index_1000 {}\n".format(in_index_1000))

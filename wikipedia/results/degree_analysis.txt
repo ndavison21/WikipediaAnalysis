@@ -3,7 +3,8 @@ in_index -1.77807269009
 in_amp 118505.122552
 out_index -0.990262515199
 out_amp 2071.53981099
-Nodes with in-degree of 0: 25204Nodes with out-degree of 0: 2246783
+Nodes with in-degree of 0: 25204
+Nodes with out-degree of 0: 2246783
 Power Law Characterisitcs up to 1,000
 in_index_1000 -1.87539364995
 in_amp_1000 190631.319927

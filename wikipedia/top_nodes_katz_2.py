@@ -67,7 +67,7 @@ print "Reading in Full Graph."
 stdout.flush()
 g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
-print "Katz."
+print "Katz 2."
 stdout.flush()
 
 

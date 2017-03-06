@@ -1,0 +1,11 @@
+Nodes with in-degree of 0: 25204
+Nodes with in-degree of 1: 1763701
+Nodes with in-degree of 2: 344828
+Nodes with in-degree of 3: 110301
+Nodes with in-degree of 4: 47131
+Nodes with in-degree of 5: 23917
+Nodes with in-degree of 6: 14221
+Nodes with in-degree of 7: 9406
+Nodes with in-degree of 8: 6883
+Nodes with in-degree of 9: 5402
+Nodes with in-degree of 10: 4181
