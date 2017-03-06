@@ -34,10 +34,7 @@ if __name__ == '__main__':
 
 	npartitions = list(partitions(g.nodes(), size_partitions))
 
-
-
 	clusts = p.imap(clust_fun, npartitions)
-	clust = dict()
 
 	print "Writing node clutsering to file"
 	stdout.flush()
@@ -45,3 +42,6 @@ if __name__ == '__main__':
 		for c in clusts:
 			for n, nc in c.iteritems():
 				file.write("{} {}\n".format(n, nc))
+
+
+	print "We done here."
