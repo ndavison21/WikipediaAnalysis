@@ -45,7 +45,7 @@ def betweenness_centrality_parallel(G, processes=None):
 if __name__ == "__main__":
     print "Reading in Graph"
     stdout.flush()
-    g = nx.read_edgelist('cambridge_net.txt', create_using=nx.DiGraph(), nodetype=int)
+    g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
     print("Computing betweenness centrality for:")
     print(nx.info(g))
