@@ -29,14 +29,14 @@ def betweenness_centrality_parallel(G, processes=None):
     node_divisor = len(p._pool)*4
     node_chunks = list(chunks(G.nodes(), int(G.order()/node_divisor)))
     num_chunks = len(node_chunks)
-    print "Mapping {} chunks to {} processes".format(num_chunks, len(p._pool))
+    print ("Mapping {} chunks to {} processes".format(num_chunks, len(p._pool)))
     stdout.flush()
     bt_sc = p.map(_betmap,
                   zip([G]*num_chunks,
                       [True]*num_chunks,
                       [None]*num_chunks,
                       node_chunks))
-    print "Reducing partial solutions"
+    print ("Reducing partial solutions")
     stdout.flush()
     # Reduce the partial solutions
     bt_c = bt_sc[0]
@@ -46,7 +46,7 @@ def betweenness_centrality_parallel(G, processes=None):
     return bt_c
 
 if __name__ == "__main__":
-    print "Reading in Graph"
+    print ("Reading in Graph")
     stdout.flush()
     g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
@@ -60,4 +60,4 @@ if __name__ == "__main__":
         for n, b in bt.iteritems():
             file.write("{} {}\n".format(n, b))
 
-    print "We Done Here."
+    print ("We Done Here.")
