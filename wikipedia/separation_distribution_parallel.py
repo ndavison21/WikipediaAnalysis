@@ -77,7 +77,7 @@ if __name__ == '__main__':
 	print "Writing node separation to file"
 	stdout.flush()
 	with open("data/node_separation.txt", "w+") as file:
-		for c in p.imap_unordered(sep_fun, npartitions)::
+		for c in p.imap_unordered(sep_fun, npartitions):
 			for n, nc in c.iteritems():
 				file.write("{} {}\n".format(n, nc))
 
