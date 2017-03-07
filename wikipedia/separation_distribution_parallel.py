@@ -4,14 +4,12 @@ import networkx as nx
 from multiprocessing import Pool
 from functools import partial
 from sys import stdout
-from math import floor
-from numpy import histogram
-import itertools
+from itertools import islice
 
 def partitions(nodes, n):
     nodes_iter = iter(nodes)
     while True:
-        partition = tuple(itertools.islice(nodes_iter,n))
+        partition = tuple(islice(nodes_iter,n))
         if not partition:
             return
         yield partition
@@ -22,7 +20,7 @@ def separation(g, sources):
 		distribution[i] = 0
 
 	for src in sources:
-		sys.stdout.flush()
+		stdout.flush()
 
 		visited = set()
 		nodes_1 = set(g.neighbors(src))
