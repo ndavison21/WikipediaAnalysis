@@ -48,16 +48,15 @@ def betweenness_centrality_parallel(G, processes=None):
 if __name__ == "__main__":
     print ("Reading in Graph")
     stdout.flush()
-    g = nx.read_edgelist('data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
+    g = nx.read_edgelist('../data/wiki-Talk.txt', create_using=nx.DiGraph(), nodetype=int)
 
     print("Computing betweenness centrality for:")
     print(nx.info(g))
     print("Parallel version")
     stdout.flush()
-    bt = betweenness_centrality_parallel(g)
 
-    with open("results/node_betweenness.txt", "w+") as file:
-        for n, b in bt.iteritems():
+    with open("../results/rankings/top_nodes_betweenness.txt", "w+") as file:
+        for n, b in betweenness_centrality_parallel(g).iteritems():
             file.write("{} {}\n".format(n, b))
 
     print ("We Done Here.")
