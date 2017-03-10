@@ -1,1 +1,3 @@
 Average Clustering: 0.0525542358733
+Number of nodes with Clustering Coefficient of 0 2139806
+Number of nodes with Clustering Coefficient of 1 80024

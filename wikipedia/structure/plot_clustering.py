@@ -8,21 +8,23 @@ clust_0 = 0
 clust_1 = 0
 
 print "Reading in Clusterings"
-with open("results/node_clustering.txt", "r") as f:
+with open("data/node_clustering.txt", "r") as f:
     for line in f.readlines():
         node, clustering = (line.rstrip('\n')).split(' ')
         node_clustering[(int(node))] = float(clustering)
         clustering_sum += float(clustering)
         if clustering == 0.0:
-        	clust_0 += 1
+            clust_0 += 1
         elif clustering == 1.0:
-        	clust_1 += 1
+            clust_1 += 1
 
 print "Generating Histogram"
 hist, bins = histogram(node_clustering.values(), bins=100)
 
 with open("results/avg_clustering.txt", "w+") as f:
-	f.write("Average Clustering: {}\n".format(clustering_sum/2394385))
+    f.write("Average Clustering: {}\n".format(clustering_sum/2394385))
+    f.write("Number of nodes with Clustering Coefficient of 0 {}\n".format(hist[0]))
+    f.write("Number of nodes with Clustering Coefficient of 1 {}\n".format(hist[-1]))
 
 width = 0.7 * (bins[2] - bins[1])
 center = (bins[:-1] + bins[1:]) / 2
@@ -38,10 +40,10 @@ plt.close()
 
 log_hist = list()
 for n in hist:
-	if n == 0:
-		log_hist.append(0)
-	else:
-		log_hist.append(log10(n))
+    if n == 0:
+        log_hist.append(0)
+    else:
+        log_hist.append(log10(n))
 
 
 plt.figure()

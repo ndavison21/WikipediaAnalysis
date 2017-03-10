@@ -1,7 +1,35 @@
-Number of Paths: 16921750244
-Mean Path Length: 5.39292450481
-Effective Diameter: 6.04232465975
-Proportion of Paths 4 or shorter 0.195728786694
-Proportion of Paths 5 or shorter 0.573118970447
-Proportion of Paths 6 or shorter 0.858667532878
-Proportion of Paths 7 or shorter 0.96386814956
+Number of Paths: 277119996
+Mean Path Length: 2.50779641683
+
+Proportions
+0 0.0
+1 0.0181199843839
+2 0.726654477867
+3 0.111742189113
+4 0.0752484854972
+5 0.0342392289873
+6 0.0183555465987
+7 0.00903197905647
+8 0.00439629769625
+9 0.00181382075366
+10 0.000280077226906
+11 0.000116848298453
+12 1.02121825954e-06
+13 4.33025410407e-08
+
+Effective Diameter: 4.1915301635
+
+Proportion of Paths 0 or shorter 0.0
+Proportion of Paths 1 or shorter 0.0181199843839
+Proportion of Paths 2 or shorter 0.744774462251
+Proportion of Paths 3 or shorter 0.856516651364
+Proportion of Paths 4 or shorter 0.931765136862
+Proportion of Paths 5 or shorter 0.966004365849
+Proportion of Paths 6 or shorter 0.984359912447
+Proportion of Paths 7 or shorter 0.993391891504
+Proportion of Paths 8 or shorter 0.9977881892
+Proportion of Paths 9 or shorter 0.999602009954
+Proportion of Paths 10 or shorter 0.999882087181
+Proportion of Paths 11 or shorter 0.999998935479
+Proportion of Paths 12 or shorter 0.999999956697
+Proportion of Paths 13 or shorter 1.0
